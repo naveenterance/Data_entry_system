@@ -1,20 +1,15 @@
 import { useState } from "react";
 
-import Form from "./Form";
 import View from "./View";
-import { MyFormProvider, MyForm } from "./MyForm";
+import { FormProvider, Form } from "./Form";
 
 function App() {
   const [entries, setEntries] = useState([]);
   return (
     <>
-      {/* <MyFormProvider>
+      <FormProvider>
         <Form setEntries={setEntries} />
-      </MyFormProvider> */}
-
-      <MyFormProvider>
-        <MyForm setEntries={setEntries} />
-      </MyFormProvider>
+      </FormProvider>
       <View entries={entries} />
     </>
   );

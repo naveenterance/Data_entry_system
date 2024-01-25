@@ -1,5 +1,7 @@
 import React, { useReducer, createContext, useContext } from "react";
 
+const FormContext = createContext();
+
 const initialState = {
   name: "",
   email: "",
@@ -8,7 +10,7 @@ const initialState = {
 
 const formReducer = (state, action) => {
   switch (action.type) {
-    case "INPUT_FIELD":
+    case "UPDATE_FIELD":
       return { ...state, [action.field]: action.value };
     case "RESET":
       return { ...state, name: "", email: "" };
@@ -22,39 +24,59 @@ const formReducer = (state, action) => {
   }
 };
 
-const Form = (props) => {
+const FormProvider = ({ children }) => {
   const [state, dispatch] = useReducer(formReducer, initialState);
+
+  return (
+    <FormContext.Provider value={{ state, dispatch }}>
+      {children}
+    </FormContext.Provider>
+  );
+};
+
+const useFormContext = () => {
+  return useContext(FormContext);
+};
+
+const Form = (props) => {
+  const { state, dispatch } = useFormContext();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    dispatch({ type: "INPUT_FIELD", field: name, value });
+    dispatch({ type: "UPDATE_FIELD", field: name, value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = { name: state.name, email: state.email };
     dispatch({ type: "ADD", formData });
     dispatch({ type: "RESET" });
 
     props.setEntries([...state.submittedData, formData]);
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={state.name}
-          onChange={handleInputChange}
-        />
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={state.name}
+            onChange={handleInputChange}
+          />
+        </label>
 
-        <input
-          type="text"
-          name="email"
-          value={state.email}
-          onChange={handleInputChange}
-        />
+        <label>
+          Email:
+          <input
+            type="name"
+            name="email"
+            value={state.email}
+            onChange={handleInputChange}
+          />
+        </label>
 
         <button type="submit">Submit</button>
       </form>
@@ -62,4 +84,4 @@ const Form = (props) => {
   );
 };
 
-export default Form;
+export { FormProvider, useFormContext, Form };
