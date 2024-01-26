@@ -58,25 +58,21 @@ const Form = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={state.name}
-            onChange={handleInputChange}
-          />
-        </label>
+        <input
+          type="text"
+          name="name"
+          value={state.name}
+          onChange={handleInputChange}
+          placeholder="name"
+        />
 
-        <label>
-          Email:
-          <input
-            type="name"
-            name="email"
-            value={state.email}
-            onChange={handleInputChange}
-          />
-        </label>
+        <input
+          type="email"
+          name="email"
+          value={state.email}
+          onChange={handleInputChange}
+          placeholder="email"
+        />
 
         <button type="submit">Submit</button>
       </form>

@@ -14,8 +14,8 @@ test("Testing forms now", () => {
   );
 
   // Get form elements
-  const nameInput = screen.getByRole("textbox", { name: /name/i });
-  const emailInput = screen.getByRole("textbox", { name: /email/i });
+  const nameInput = screen.getByPlaceholderText(/name/i);
+  const emailInput = screen.getByPlaceholderText(/email/i);
   const submitButton = screen.getByRole("button", { name: /submit/i });
 
   // Test input change
