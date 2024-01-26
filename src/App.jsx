@@ -3,7 +3,7 @@ import { useState } from "react";
 import View from "./View";
 import { FormProvider, Form } from "./Form";
 
-function App() {
+const App = () => {
   const [entries, setEntries] = useState([]);
   return (
     <>
@@ -13,6 +13,6 @@ function App() {
       <View entries={entries} />
     </>
   );
-}
+};
 
 export default App;
