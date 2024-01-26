@@ -1,45 +1,8 @@
-import React, { useReducer, createContext, useContext } from "react";
+import React from "react";
+import { Contexthook } from "./Context";
 
-const FormContext = createContext();
-
-const initialState = {
-  name: "",
-  email: "",
-  submittedData: [],
-};
-
-const formReducer = (state, action) => {
-  switch (action.type) {
-    case "UPDATE_FIELD":
-      return { ...state, [action.field]: action.value };
-    case "RESET":
-      return { ...state, name: "", email: "" };
-    case "ADD":
-      return {
-        ...state,
-        submittedData: [...state.submittedData, action.formData],
-      };
-    default:
-      return state;
-  }
-};
-
-const FormProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(formReducer, initialState);
-
-  return (
-    <FormContext.Provider value={{ state, dispatch }}>
-      {children}
-    </FormContext.Provider>
-  );
-};
-
-const useFormContext = () => {
-  return useContext(FormContext);
-};
-
-const Form = (props) => {
-  const { state, dispatch } = useFormContext();
+const Forma = () => {
+  const { state, dispatch } = Contexthook();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -51,8 +14,6 @@ const Form = (props) => {
     const formData = { name: state.name, email: state.email };
     dispatch({ type: "ADD", formData });
     dispatch({ type: "RESET" });
-
-    props.setEntries([...state.submittedData, formData]);
   };
 
   return (
@@ -80,4 +41,4 @@ const Form = (props) => {
   );
 };
 
-export { FormProvider, useFormContext, Form };
+export default Forma;

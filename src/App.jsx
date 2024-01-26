@@ -1,17 +1,14 @@
-import { useState } from "react";
-
+import React from "react";
+import Forma from "./Form";
 import View from "./View";
-import { FormProvider, Form } from "./Form";
+import Context from "./Context";
 
 const App = () => {
-  const [entries, setEntries] = useState([]);
   return (
-    <>
-      <FormProvider>
-        <Form setEntries={setEntries} />
-      </FormProvider>
-      <View entries={entries} />
-    </>
+    <Context>
+      <Forma />
+      <View />
+    </Context>
   );
 };
 

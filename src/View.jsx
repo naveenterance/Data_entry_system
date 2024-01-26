@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Contexthook } from "./Context";
 
-const View = (props) => {
+const View = () => {
+  const { state } = Contexthook();
+
   return (
-    <>
-      <h2>Submitted Data:</h2>
+    <div>
+      <h2>View Component</h2>
       <ul>
-        {props.entries.map((data, index) => (
-          <li key={index}>{`Name: ${data.name}, Email: ${data.email}`}</li>
+        {state.submittedData.map((data, index) => (
+          <li key={index}>
+            Name: {data.name}, Email: {data.email}
+          </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
