@@ -42,7 +42,7 @@ describe("Form component", () => {
       });
     });
 
-    const expectedDispatchCalls = [
+    const ispatchCalls = [
       { type: "UPDATE_FIELD", field: "firstName", value: "John" },
       { type: "UPDATE_FIELD", field: "lastName", value: "Brennan" },
       { type: "UPDATE_FIELD", field: "email", value: "jb@gmail.com" },
@@ -54,7 +54,7 @@ describe("Form component", () => {
       { type: "UPDATE_FIELD", field: "postcode", value: "1234" },
     ];
 
-    expectedDispatchCalls.forEach((call) => {
+    ispatchCalls.forEach((call) => {
       expect(dispatchMock).toHaveBeenCalledWith(call);
     });
   });

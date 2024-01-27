@@ -1,18 +1,11 @@
 import React, { createContext, useContext, useReducer } from "react";
+import { propertyNames } from "../Constants";
 
 export const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
   const initialState = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    country: "",
-    age: "",
-    street: "",
-    town: "",
-    postcode: "",
+    ...Object.fromEntries(propertyNames.map((name) => [name, ""])),
     visits: "0",
     entries: [],
   };
@@ -24,15 +17,7 @@ export const ContextProvider = ({ children }) => {
       case "RESET":
         return {
           ...state,
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          country: "",
-          age: "",
-          street: "",
-          town: "",
-          postcode: "",
+          ...Object.fromEntries(propertyNames.map((name) => [name, ""])),
           visits: "0",
         };
       case "ADD":
