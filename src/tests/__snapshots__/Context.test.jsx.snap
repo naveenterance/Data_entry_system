@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Context renders without crashing  1`] = `
+exports[`Context 1--Context component renders without crashing  1`] = `
 <div>
   <div>
     <span
@@ -15,6 +15,26 @@ exports[`Context renders without crashing  1`] = `
     <span
       data-testid="phone"
     />
+    <span
+      data-testid="country"
+    />
+    <span
+      data-testid="age"
+    />
+    <span
+      data-testid="street"
+    />
+    <span
+      data-testid="town"
+    />
+    <span
+      data-testid="postcode"
+    />
+    <span
+      data-testid="visits"
+    >
+      0
+    </span>
     <button
       data-testid="submit"
     >

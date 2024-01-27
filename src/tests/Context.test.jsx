@@ -1,6 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { propertyNames } from "../Constants";
 
 import { ContextProvider, Contexthook } from "../context/Context";
 
@@ -12,14 +13,21 @@ const MockChild = () => {
     dispatch({ type: "UPDATE_FIELD", field: "lastName", value: "Brenann" });
     dispatch({ type: "UPDATE_FIELD", field: "email", value: "jb@gmail.com" });
     dispatch({ type: "UPDATE_FIELD", field: "phone", value: "12345678" });
+    dispatch({ type: "UPDATE_FIELD", field: "country", value: "India" });
+    dispatch({ type: "UPDATE_FIELD", field: "age", value: "25" });
+    dispatch({ type: "UPDATE_FIELD", field: "street", value: "st1" });
+    dispatch({ type: "UPDATE_FIELD", field: "town", value: "tw1" });
+    dispatch({ type: "UPDATE_FIELD", field: "postcode", value: "1234" });
+    dispatch({ type: "UPDATE_FIELD", field: "visits", value: "34" });
   };
 
   return (
     <div>
-      <span data-testid="firstName">{state.firstName}</span>
-      <span data-testid="lastName">{state.lastName}</span>
-      <span data-testid="email">{state.email}</span>
-      <span data-testid="phone">{state.phone}</span>
+      {propertyNames.map((propertyName) => (
+        <span key={propertyName} data-testid={propertyName}>
+          {state[propertyName]}
+        </span>
+      ))}
       <button data-testid="submit" onClick={handleUpdateField}>
         Submit
       </button>
@@ -28,7 +36,7 @@ const MockChild = () => {
 };
 
 describe("Context", () => {
-  it("renders without crashing ", () => {
+  it("1--Context component renders without crashing ", () => {
     const { container } = render(
       <ContextProvider>
         <MockChild />
@@ -38,29 +46,43 @@ describe("Context", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("updates context state when dispatching UPDATE_FIELD action", () => {
+  it("2--Context state is initially empty", () => {
     const { getByTestId } = render(
       <ContextProvider>
         <MockChild />
       </ContextProvider>
     );
 
-    expect(getByTestId("firstName")).toHaveTextContent("");
-    expect(getByTestId("lastName")).toHaveTextContent("");
-    expect(getByTestId("email")).toHaveTextContent("");
-    expect(getByTestId("phone")).toHaveTextContent("");
+    propertyNames.forEach((testId) => {
+      const expectedValue = testId === "visits" ? "0" : "";
+      expect(getByTestId(testId)).toHaveTextContent(expectedValue);
+    });
+  });
+
+  it("3--Context state updates when dispatching UPDATE_FIELD action", () => {
+    const { getByTestId } = render(
+      <ContextProvider>
+        <MockChild />
+      </ContextProvider>
+    );
 
     fireEvent.click(getByTestId("submit"));
 
-    expect(getByTestId("firstName")).toHaveTextContent("John");
-    expect(getByTestId("lastName")).toHaveTextContent("Brenann");
-    expect(getByTestId("email")).toHaveTextContent("jb@gmail.com");
-    expect(getByTestId("phone")).toHaveTextContent("12345678");
-    const phone = getByTestId("phone").textContent;
-    expect(typeof phone).toBe("string");
-    expect(/^[0-9]+$/.test(phone)).toBe(true);
-    const email = getByTestId("email").textContent;
-    expect(typeof email).toBe("string");
-    expect(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)).toBe(true);
+    const testIdValuePairs = [
+      { testId: "firstName", value: "John" },
+      { testId: "lastName", value: "Brenann" },
+      { testId: "email", value: "jb@gmail.com" },
+      { testId: "phone", value: "12345678" },
+      { testId: "country", value: "India" },
+      { testId: "age", value: "25" },
+      { testId: "street", value: "st1" },
+      { testId: "town", value: "tw1" },
+      { testId: "postcode", value: "1234" },
+      { testId: "visits", value: "34" },
+    ];
+
+    testIdValuePairs.forEach(({ testId, value }) => {
+      expect(getByTestId(testId)).toHaveTextContent(value);
+    });
   });
 });

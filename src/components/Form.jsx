@@ -1,5 +1,6 @@
 import React from "react";
 import { Contexthook } from "../context/Context";
+import { countries } from "../Constants";
 
 const Form = () => {
   const { state, dispatch } = Contexthook();
@@ -85,11 +86,17 @@ const Form = () => {
           onChange={handleInputChange}
           placeholder="phone"
         />
-        <select name="country" id="country" onChange={handleInputChange}>
-          <option value="India">India</option>
-          <option value="Australia">Australia</option>
-          <option value="Europa">Europa</option>
-          <option value="japan">japan</option>
+        <select
+          name="country"
+          id="country"
+          onChange={handleInputChange}
+          placeholder="country"
+        >
+          {countries.map((country) => (
+            <option key={country} value={country}>
+              {country}
+            </option>
+          ))}
         </select>
         <input
           type="text"
@@ -121,11 +128,14 @@ const Form = () => {
         />
 
         <input
+          data-testid="visits"
           id="visits"
           type="text"
           name="visits"
           value={state.visits}
+          placeholder="visits"
           readOnly
+          disabled
         />
         <div onClick={incrementVisits}>Increment</div>
         <div onClick={decrementVisits}>decrement</div>
