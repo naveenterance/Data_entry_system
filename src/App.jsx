@@ -1,14 +1,14 @@
 import React from "react";
-import Forma from "./Form";
+import Form from "./Form";
 import View from "./View";
-import Context from "./Context";
+import { ContextProvider } from "./Context";
 
 const App = () => {
   return (
-    <Context>
-      <Forma />
+    <ContextProvider>
+      <Form />
       <View />
-    </Context>
+    </ContextProvider>
   );
 };
 

@@ -1,11 +1,15 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-const Context = createContext();
+export const Context = createContext();
 
-const ContextProvider = ({ children }) => {
+export const ContextProvider = ({ children }) => {
   const initialState = {
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
+    phone: "",
+    country: "",
+    age: "",
     submittedData: [],
   };
 
@@ -14,7 +18,15 @@ const ContextProvider = ({ children }) => {
       case "UPDATE_FIELD":
         return { ...state, [action.field]: action.value };
       case "RESET":
-        return { ...state, name: "", email: "" };
+        return {
+          ...state,
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          country: "",
+          age: "",
+        };
       case "ADD":
         return {
           ...state,
@@ -35,5 +47,3 @@ const ContextProvider = ({ children }) => {
 export const Contexthook = () => {
   return useContext(Context);
 };
-
-export default ContextProvider;

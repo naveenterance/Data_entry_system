@@ -1,17 +1,35 @@
 import React from "react";
 import { Contexthook } from "./Context";
 
-const Forma = () => {
+const Form = () => {
   const { state, dispatch } = Contexthook();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    dispatch({ type: "UPDATE_FIELD", field: name, value });
+
+    if (name == "phone") {
+      if (/^\d{0,15}$/.test(value)) {
+        dispatch({ type: "UPDATE_FIELD", field: name, value });
+      }
+    } else if (name == "age") {
+      if (/^\d{0,2}$/.test(value)) {
+        dispatch({ type: "UPDATE_FIELD", field: name, value });
+      }
+    } else {
+      dispatch({ type: "UPDATE_FIELD", field: name, value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = { name: state.name, email: state.email };
+    const formData = {
+      firstName: state.firstName,
+      lastName: state.lastName,
+      email: state.email,
+      phone: state.phone,
+      country: state.country,
+      age: state.age,
+    };
     dispatch({ type: "ADD", formData });
     dispatch({ type: "RESET" });
   };
@@ -21,10 +39,17 @@ const Forma = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="name"
-          value={state.name}
+          name="firstName"
+          value={state.firstName}
           onChange={handleInputChange}
-          placeholder="name"
+          placeholder="firstName"
+        />
+        <input
+          type="text"
+          name="lastName"
+          value={state.lastName}
+          onChange={handleInputChange}
+          placeholder="lastName"
         />
 
         <input
@@ -34,6 +59,26 @@ const Forma = () => {
           onChange={handleInputChange}
           placeholder="email"
         />
+        <input
+          type="text"
+          name="phone"
+          value={state.phone}
+          onChange={handleInputChange}
+          placeholder="phone"
+        />
+        <select name="country" id="country" onChange={handleInputChange}>
+          <option value="India">India</option>
+          <option value="Australia">Australia</option>
+          <option value="Europa">Europa</option>
+          <option value="japan">japan</option>
+        </select>
+        <input
+          type="text"
+          name="age"
+          value={state.age}
+          onChange={handleInputChange}
+          placeholder="age"
+        />
 
         <button type="submit">Submit</button>
       </form>
@@ -41,4 +86,4 @@ const Forma = () => {
   );
 };
 
-export default Forma;
+export default Form;

@@ -2,20 +2,20 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Context, { Contexthook } from "./Context";
+import { ContextProvider, Contexthook } from "./Context";
 
 const MockChild = () => {
   const { state, dispatch } = Contexthook();
 
   const handleUpdateField = () => {
-    dispatch({ type: "UPDATE_FIELD", field: "name", value: "John" });
+    dispatch({ type: "UPDATE_FIELD", field: "firstName", value: "John" });
   };
 
   return (
     <div>
-      <span data-testid="name">{state.name}</span>
+      <span data-testid="firstName">{state.firstName}</span>
       <button data-testid="submit" onClick={handleUpdateField}>
-        Update Name
+        Submit
       </button>
     </div>
   );
@@ -24,24 +24,24 @@ const MockChild = () => {
 describe("Context", () => {
   it("renders without crashing", () => {
     render(
-      <Context>
+      <ContextProvider>
         <MockChild />
-      </Context>
+      </ContextProvider>
     );
   });
 
   it("updates context state when dispatching UPDATE_FIELD action", () => {
     const { getByTestId } = render(
-      <Context>
+      <ContextProvider>
         <MockChild />
-      </Context>
+      </ContextProvider>
     );
 
-    const nameElement = getByTestId("name");
-    expect(nameElement).toHaveTextContent("");
+    const firstNameElement = getByTestId("firstName");
+    expect(firstNameElement).toHaveTextContent("");
 
     fireEvent.click(getByTestId("submit"));
 
-    expect(nameElement).toHaveTextContent("John");
+    expect(firstNameElement).toHaveTextContent("John");
   });
 });

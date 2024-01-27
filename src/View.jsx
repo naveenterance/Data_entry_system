@@ -10,7 +10,8 @@ const View = () => {
       <ul>
         {state.submittedData.map((data, index) => (
           <li key={index}>
-            Name: {data.name}, Email: {data.email}
+            Name: {data.firstName} {data.lastName}, Email: {data.email}, Phone:{" "}
+            {data.phone},age: {data.age} ,country: {data.country}
           </li>
         ))}
       </ul>
