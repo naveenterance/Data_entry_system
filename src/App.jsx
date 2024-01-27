@@ -1,7 +1,7 @@
 import React from "react";
-import Form from "./Form";
-import View from "./View";
-import { ContextProvider } from "./Context";
+import Form from "./components/Form";
+import View from "./components/View";
+import { ContextProvider } from "./context/Context";
 
 const App = () => {
   return (

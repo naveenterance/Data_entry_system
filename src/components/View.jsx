@@ -1,5 +1,5 @@
 import React from "react";
-import { Contexthook } from "./Context";
+import { Contexthook } from "../context/Context";
 
 const View = () => {
   const { state } = Contexthook();

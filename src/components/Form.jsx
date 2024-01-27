@@ -1,5 +1,5 @@
 import React from "react";
-import { Contexthook } from "./Context";
+import { Contexthook } from "../context/Context";
 
 const Form = () => {
   const { state, dispatch } = Contexthook();

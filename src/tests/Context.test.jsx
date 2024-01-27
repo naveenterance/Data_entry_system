@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import { ContextProvider, Contexthook } from "./Context";
+import { ContextProvider, Contexthook } from "../context/Context";
 
 const MockChild = () => {
   const { state, dispatch } = Contexthook();

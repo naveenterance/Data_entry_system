@@ -1,10 +1,10 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Contexthook } from "./Context";
-import Form from "./Form";
+import { Contexthook } from "../context/Context";
+import Form from "../components/Form";
 
-jest.mock("./Context", () => ({
+jest.mock("../context/Context", () => ({
   Contexthook: jest.fn(),
 }));
 
@@ -24,8 +24,11 @@ describe("Form component", () => {
     fireEvent.change(getByPlaceholderText("firstName"), {
       target: { value: "John" },
     });
+    fireEvent.change(getByPlaceholderText("lastName"), {
+      target: { value: "Brennan" },
+    });
     fireEvent.change(getByPlaceholderText("email"), {
-      target: { value: "john@example.com" },
+      target: { value: "jb@gmail.com" },
     });
 
     expect(dispatchMock).toHaveBeenCalledWith({
@@ -35,15 +38,20 @@ describe("Form component", () => {
     });
     expect(dispatchMock).toHaveBeenCalledWith({
       type: "UPDATE_FIELD",
+      field: "lastName",
+      value: "Brennan",
+    });
+    expect(dispatchMock).toHaveBeenCalledWith({
+      type: "UPDATE_FIELD",
       field: "email",
-      value: "john@example.com",
+      value: "jb@gmail.com",
     });
   });
 
   it("submits form data on button click", () => {
     const dispatchMock = jest.fn();
     Contexthook.mockReturnValue({
-      state: { firstName: "John", email: "john@example.com" },
+      state: { firstName: "John", lastName: "Brennan", email: "jb@gmail.com" },
       dispatch: dispatchMock,
     });
 
@@ -53,7 +61,11 @@ describe("Form component", () => {
 
     expect(dispatchMock).toHaveBeenCalledWith({
       type: "ADD",
-      formData: { firstName: "John", email: "john@example.com" },
+      formData: {
+        firstName: "John",
+        lastName: "Brennan",
+        email: "jb@gmail.com",
+      },
     });
     expect(dispatchMock).toHaveBeenCalledWith({
       type: "RESET",

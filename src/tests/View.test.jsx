@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Contexthook, ContextProvider } from "./Context";
-import View from "./View";
+import { Contexthook, ContextProvider } from "../context/Context";
+import View from "../components/View";
 
-jest.mock("./Context", () => ({
+jest.mock("../context/Context", () => ({
   Contexthook: jest.fn(),
   ContextProvider: ({ children }) => <div>{children}</div>,
 }));
