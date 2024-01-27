@@ -10,8 +10,8 @@ jest.mock("../context/Context", () => ({
 }));
 
 describe("View component", () => {
-  it("renders submitted data correctly", () => {
-    const mockSubmittedData = [
+  it("renders submitted data correctly ", () => {
+    const mockentries = [
       {
         firstName: "John",
         lastName: "Doe",
@@ -31,7 +31,7 @@ describe("View component", () => {
     ];
 
     Contexthook.mockReturnValue({
-      state: { submittedData: mockSubmittedData },
+      state: { entries: mockentries },
     });
 
     const { container } = render(
@@ -40,17 +40,26 @@ describe("View component", () => {
       </ContextProvider>
     );
 
-    // Verify that the component renders each data field
-    mockSubmittedData.forEach((data) =>
+    mockentries.forEach((data) =>
       ["firstName", "lastName", "email", "phone", "age", "country"].forEach(
         (field) => expect(container).toHaveTextContent(data[field].toString())
       )
     );
+
+    expect(container).toMatchSnapshot();
   });
 
-  it("renders without crashing when no data is submitted", () => {
+  it("renders without crashing when no data is submitted  ", () => {
     Contexthook.mockReturnValue({
-      state: { submittedData: [] },
+      state: { entries: [] },
     });
+
+    const { container } = render(
+      <ContextProvider>
+        <View />
+      </ContextProvider>
+    );
+
+    expect(container).toMatchSnapshot();
   });
 });

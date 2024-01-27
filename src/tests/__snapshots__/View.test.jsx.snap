@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`View component renders submitted data correctly  1`] = `
+<div>
+  <div>
+    <div>
+      <h2>
+        View Component
+      </h2>
+      <ul>
+        <li>
+          Name: 
+          John
+           
+          Doe
+          , Email: 
+          john@example.com
+          , Phone:
+           
+          123456789
+          ,age: 
+          30
+           ,country: 
+          USA
+          , address :
+           
+          Visits: 
+        </li>
+        <li>
+          Name: 
+          Alice
+           
+          Smith
+          , Email: 
+          alice@example.com
+          , Phone:
+           
+          987654321
+          ,age: 
+          25
+           ,country: 
+          Canada
+          , address :
+           
+          Visits: 
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`View component renders without crashing when no data is submitted   1`] = `
+<div>
+  <div>
+    <div>
+      <h2>
+        View Component
+      </h2>
+      <ul />
+    </div>
+  </div>
+</div>
+`;

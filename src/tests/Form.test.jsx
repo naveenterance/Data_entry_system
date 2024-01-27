@@ -3,16 +3,19 @@ import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Contexthook } from "../context/Context";
 import Form from "../components/Form";
+import renderer from "react-test-renderer";
 
 jest.mock("../context/Context", () => ({
   Contexthook: jest.fn(),
 }));
 
 describe("Form component", () => {
-  it("renders without crashing", () => {
+  it("renders without crashing ", () => {
     Contexthook.mockReturnValue({ state: {}, dispatch: jest.fn() });
 
-    render(<Form />);
+    const { container } = render(<Form />);
+
+    expect(container).toMatchSnapshot();
   });
 
   it("updates form state on input change", () => {
@@ -21,12 +24,14 @@ describe("Form component", () => {
 
     const { getByPlaceholderText } = render(<Form />);
 
-    fireEvent.change(getByPlaceholderText("firstName"), {
+    fireEvent.change(getByPlaceholderText("First Name"), {
       target: { value: "John" },
     });
-    fireEvent.change(getByPlaceholderText("lastName"), {
+
+    fireEvent.change(getByPlaceholderText("Last Name"), {
       target: { value: "Brennan" },
     });
+
     fireEvent.change(getByPlaceholderText("email"), {
       target: { value: "jb@gmail.com" },
     });
@@ -36,11 +41,13 @@ describe("Form component", () => {
       field: "firstName",
       value: "John",
     });
+
     expect(dispatchMock).toHaveBeenCalledWith({
       type: "UPDATE_FIELD",
       field: "lastName",
       value: "Brennan",
     });
+
     expect(dispatchMock).toHaveBeenCalledWith({
       type: "UPDATE_FIELD",
       field: "email",
@@ -67,6 +74,7 @@ describe("Form component", () => {
         email: "jb@gmail.com",
       },
     });
+
     expect(dispatchMock).toHaveBeenCalledWith({
       type: "RESET",
     });

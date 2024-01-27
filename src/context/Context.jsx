@@ -10,7 +10,11 @@ export const ContextProvider = ({ children }) => {
     phone: "",
     country: "",
     age: "",
-    submittedData: [],
+    street: "",
+    town: "",
+    postcode: "",
+    visits: "0",
+    entries: [],
   };
 
   const reducer = (state, action) => {
@@ -26,11 +30,15 @@ export const ContextProvider = ({ children }) => {
           phone: "",
           country: "",
           age: "",
+          street: "",
+          town: "",
+          postcode: "",
+          visits: "0",
         };
       case "ADD":
         return {
           ...state,
-          submittedData: [...state.submittedData, action.formData],
+          entries: [...state.entries, action.formData],
         };
       default:
         return state;

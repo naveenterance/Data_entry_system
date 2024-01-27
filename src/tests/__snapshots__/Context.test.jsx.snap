@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Context renders without crashing  1`] = `
+<div>
+  <div>
+    <span
+      data-testid="firstName"
+    />
+    <span
+      data-testid="lastName"
+    />
+    <span
+      data-testid="email"
+    />
+    <span
+      data-testid="phone"
+    />
+    <button
+      data-testid="submit"
+    >
+      Submit
+    </button>
+  </div>
+</div>
+`;
