@@ -5,7 +5,7 @@ exports[`View component 1--Renders submitted data correctly 1`] = `
   <div>
     <div>
       <ul
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 m-2"
+        class="grid grid-cols-1 lg:grid-cols-3 gap-2  p-4 bg-slate-800"
       >
         <li
           class="bg-slate-300  p-8 rounded-lg flex flex-col items-center justify-center font-semibold"
@@ -198,7 +198,7 @@ exports[`View component 2--View component when no data is submitted   1`] = `
   <div>
     <div>
       <ul
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 m-2"
+        class="grid grid-cols-1 lg:grid-cols-3 gap-2  p-4 bg-slate-800"
       />
     </div>
   </div>

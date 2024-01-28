@@ -9,23 +9,46 @@ const Form = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "phone") {
-      if (/^\d{0,15}$/.test(value)) {
-        dispatch({ type: "UPDATE_FIELD", field: name, value });
-      }
-    } else if (name === "age") {
-      if (/^\d{0,2}$/.test(value)) {
-        dispatch({ type: "UPDATE_FIELD", field: name, value });
-      }
-    } else {
+    if (
+      (name === "firstName" || name === "lastName") &&
+      /^[a-zA-Z]+$/.test(value)
+    ) {
+      dispatch({ type: "UPDATE_FIELD", field: name, value });
+    }
+
+    if (name === "phone" && /^\d{0,15}$/.test(value)) {
+      dispatch({ type: "UPDATE_FIELD", field: name, value });
+    }
+
+    if (name === "age" && /^\d{0,2}$/.test(value)) {
+      dispatch({ type: "UPDATE_FIELD", field: name, value });
+    }
+
+    if (
+      name !== "age" &&
+      name !== "phone" &&
+      name !== "firstName" &&
+      name != "lastName"
+    ) {
       dispatch({ type: "UPDATE_FIELD", field: name, value });
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch({ type: "ADD", state });
+    const formData = {
+      firstName: state.firstName,
+      lastName: state.lastName,
+      email: state.email,
+      phone: state.phone,
+      country: state.country,
+      age: state.age,
+      street: state.street,
+      town: state.town,
+      postcode: state.postcode,
+      visits: state.visits,
+    };
+    dispatch({ type: "ADD", formData });
     dispatch({ type: "RESET" });
   };
 
@@ -33,19 +56,22 @@ const Form = () => {
     dispatch({ type: "RESET" });
   };
   const incrementVisits = () => {
-    const visitCount = parseInt(document.getElementById("visits").value, 10);
-
-    dispatch({ type: "UPDATE_FIELD", field: "visits", value: visitCount + 1 });
+    dispatch({
+      type: "UPDATE_FIELD",
+      field: "visits",
+      value: parseInt(state.visits, 10) + 1,
+    });
   };
-  const decrementVisits = () => {
-    const visitCount = parseInt(document.getElementById("visits").value, 10);
 
-    visitCount > 0 &&
+  const decrementVisits = () => {
+    const visitsAsNumber = parseInt(state.visits, 10);
+    if (visitsAsNumber > 0) {
       dispatch({
         type: "UPDATE_FIELD",
         field: "visits",
-        value: visitCount - 1,
+        value: visitsAsNumber - 1,
       });
+    }
   };
 
   return (
@@ -164,7 +190,7 @@ const Form = () => {
       </div>
       <div className="flex justify-between">
         <label className="label" htmlFor="town">
-          Town
+          Tow
         </label>
         <input
           required

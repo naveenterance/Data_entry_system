@@ -6,7 +6,7 @@ import { ContextProvider } from "./context/Context";
 const App = () => {
   return (
     <ContextProvider>
-      <div className="lg:flex bg-slate-800  pb-16 pt-2 h-screen md:h-full">
+      <div className="lg:flex bg-slate-800  pb-16 pt-2  md:h-full ">
         <div className="lg:w-1/3  h-full bg-slate-300 rounded-lg mx-4 p-2">
           <Form />
         </div>
