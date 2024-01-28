@@ -9,11 +9,11 @@ const Form = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name == "phone") {
+    if (name === "phone") {
       if (/^\d{0,15}$/.test(value)) {
         dispatch({ type: "UPDATE_FIELD", field: name, value });
       }
-    } else if (name == "age") {
+    } else if (name === "age") {
       if (/^\d{0,2}$/.test(value)) {
         dispatch({ type: "UPDATE_FIELD", field: name, value });
       }
@@ -24,19 +24,8 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = {
-      firstName: state.firstName,
-      lastName: state.lastName,
-      email: state.email,
-      phone: state.phone,
-      country: state.country,
-      age: state.age,
-      street: state.street,
-      town: state.town,
-      postcode: state.postcode,
-      visits: state.visits,
-    };
-    dispatch({ type: "ADD", formData });
+
+    dispatch({ type: "ADD", state });
     dispatch({ type: "RESET" });
   };
 
@@ -175,7 +164,7 @@ const Form = () => {
       </div>
       <div className="flex justify-between">
         <label className="label" htmlFor="town">
-          Tow
+          Town
         </label>
         <input
           required
