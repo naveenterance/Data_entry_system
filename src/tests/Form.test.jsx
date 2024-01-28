@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, getByTestId } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Contexthook } from "../context/Context";
 import Form from "../components/Form";
@@ -42,7 +42,7 @@ describe("Form component", () => {
       });
     });
 
-    const ispatchCalls = [
+    const dispatchCalls = [
       { type: "UPDATE_FIELD", field: "firstName", value: "John" },
       { type: "UPDATE_FIELD", field: "lastName", value: "Brennan" },
       { type: "UPDATE_FIELD", field: "email", value: "jb@gmail.com" },
@@ -54,7 +54,7 @@ describe("Form component", () => {
       { type: "UPDATE_FIELD", field: "postcode", value: "1234" },
     ];
 
-    ispatchCalls.forEach((call) => {
+    dispatchCalls.forEach((call) => {
       expect(dispatchMock).toHaveBeenCalledWith(call);
     });
   });

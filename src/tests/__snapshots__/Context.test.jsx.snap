@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Context 1--Context component renders without crashing  1`] = `
+exports[`Context Component 1--Context component renders without crashing  1`] = `
 <div>
   <div>
     <span

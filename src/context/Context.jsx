@@ -25,6 +25,13 @@ export const ContextProvider = ({ children }) => {
           ...state,
           entries: [...state.entries, action.formData],
         };
+      case "DELETE":
+        return {
+          ...state,
+          entries: state.entries.filter(
+            (entry) => entry.email !== action.email
+          ),
+        };
       default:
         return state;
     }

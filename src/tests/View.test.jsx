@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Contexthook, ContextProvider } from "../context/Context";
 import View from "../components/View";
@@ -82,5 +82,37 @@ describe("View component", () => {
     );
 
     expect(container).toMatchSnapshot();
+  });
+  it("3-Delete an entry", () => {
+    const mockDispatch = jest.fn();
+    Contexthook.mockReturnValue({
+      state: {
+        entries: [
+          {
+            firstName: "John",
+            lastName: "Doe",
+            email: "jd@gmail.com",
+          },
+        ],
+      },
+      dispatch: mockDispatch,
+    });
+
+    render(
+      <ContextProvider>
+        <View />
+      </ContextProvider>
+    );
+
+    expect(screen.getByText(/jd@gmail.com/)).toBeInTheDocument();
+
+    // Assuming the delete button is a button element
+    fireEvent.click(screen.getByText("Delete"));
+
+    // Verify that dispatch was called with the correct arguments
+    expect(mockDispatch).toHaveBeenCalledWith({
+      type: "DELETE",
+      email: "jd@gmail.com",
+    });
   });
 });

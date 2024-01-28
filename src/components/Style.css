@@ -1,0 +1,7 @@
+.input {
+  @apply m-2 rounded-md bg-transparent border-2 w-2/3 border-slate-600 p-2 placeholder-slate-300 hover:border-red-500 focus:outline-none focus:ring-0 focus:border-red-500;
+}
+
+.label {
+  @apply my-auto font-extrabold m-1;
+}

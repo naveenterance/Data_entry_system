@@ -4,53 +4,188 @@ exports[`View component 1--Renders submitted data correctly 1`] = `
 <div>
   <div>
     <div>
-      <h2>
-        View Component
-      </h2>
-      <ul>
-        <li>
-          Name: 
-          John
-           
-          Doe
-          , Email: 
-          john@example.com
-          , Phone:
-           
-          123456789
-          ,age: 
-          25
-           ,country: 
-          USA
-          , address :
-           
-          st1
-          tw1
-          1234
-          Visits: 
-          34
+      <ul
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 m-2"
+      >
+        <li
+          class="bg-slate-300  p-8 rounded-lg flex flex-col items-center justify-center font-semibold"
+        >
+          <svg
+            class="w-12 h-12"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <p
+            class="my-1  "
+          >
+            Name: 
+            John
+             
+            Doe
+          </p>
+          <p
+            class="my-1   "
+          >
+            Email: 
+            john@example.com
+          </p>
+          <p
+            class="my-1  "
+          >
+            Phone: 
+            123456789
+          </p>
+          <p
+            class="my-1  "
+          >
+            Age: 
+            25
+          </p>
+          <p
+            class="my-1  "
+          >
+            Country: 
+            USA
+          </p>
+          <div
+            class="border-4 p-4 rounded-lg"
+          >
+            <p
+              class="my-1   text-xl underline "
+            >
+              Address
+            </p>
+            <p
+              class="my-1  "
+            >
+              Street: 
+              st1
+              ,
+            </p>
+            <p
+              class="my-1  "
+            >
+              Town: 
+              tw1
+              ,
+            </p>
+            <p
+              class="my-1  "
+            >
+              Postcode: 
+              1234
+            </p>
+          </div>
+          <p
+            class="text-lg mt-2 border-4 border-transparent border-b-cyan-500 p-1 "
+          >
+            Visits: 
+            34
+          </p>
+          <button
+            class="p-2 rounded-lg m-4 text-slate-50  w-1/2  hover:outline bg-red-500"
+          >
+            Delete
+          </button>
         </li>
-        <li>
-          Name: 
-          Alice
-           
-          Smith
-          , Email: 
-          alice@example.com
-          , Phone:
-           
-          987654321
-          ,age: 
-          25
-           ,country: 
-          Canada
-          , address :
-           
-          st1
-          tw1
-          1234
-          Visits: 
-          34
+        <li
+          class="bg-slate-300  p-8 rounded-lg flex flex-col items-center justify-center font-semibold"
+        >
+          <svg
+            class="w-12 h-12"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <p
+            class="my-1  "
+          >
+            Name: 
+            Alice
+             
+            Smith
+          </p>
+          <p
+            class="my-1   "
+          >
+            Email: 
+            alice@example.com
+          </p>
+          <p
+            class="my-1  "
+          >
+            Phone: 
+            987654321
+          </p>
+          <p
+            class="my-1  "
+          >
+            Age: 
+            25
+          </p>
+          <p
+            class="my-1  "
+          >
+            Country: 
+            Canada
+          </p>
+          <div
+            class="border-4 p-4 rounded-lg"
+          >
+            <p
+              class="my-1   text-xl underline "
+            >
+              Address
+            </p>
+            <p
+              class="my-1  "
+            >
+              Street: 
+              st1
+              ,
+            </p>
+            <p
+              class="my-1  "
+            >
+              Town: 
+              tw1
+              ,
+            </p>
+            <p
+              class="my-1  "
+            >
+              Postcode: 
+              1234
+            </p>
+          </div>
+          <p
+            class="text-lg mt-2 border-4 border-transparent border-b-cyan-500 p-1 "
+          >
+            Visits: 
+            34
+          </p>
+          <button
+            class="p-2 rounded-lg m-4 text-slate-50  w-1/2  hover:outline bg-red-500"
+          >
+            Delete
+          </button>
         </li>
       </ul>
     </div>
@@ -62,10 +197,9 @@ exports[`View component 2--View component when no data is submitted   1`] = `
 <div>
   <div>
     <div>
-      <h2>
-        View Component
-      </h2>
-      <ul />
+      <ul
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 m-2"
+      />
     </div>
   </div>
 </div>

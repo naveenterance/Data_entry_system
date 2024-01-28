@@ -35,7 +35,7 @@ const MockChild = () => {
   );
 };
 
-describe("Context", () => {
+describe("Context Component", () => {
   it("1--Context component renders without crashing ", () => {
     const { container } = render(
       <ContextProvider>
@@ -54,8 +54,9 @@ describe("Context", () => {
     );
 
     propertyNames.forEach((testId) => {
-      const expectedValue = testId === "visits" ? "0" : "";
-      expect(getByTestId(testId)).toHaveTextContent(expectedValue);
+      expect(getByTestId(testId)).toHaveTextContent(
+        testId === "visits" ? "0" : ""
+      );
     });
   });
 
