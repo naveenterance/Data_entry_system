@@ -106,10 +106,8 @@ describe("View component", () => {
 
     expect(screen.getByText(/jd@gmail.com/)).toBeInTheDocument();
 
-    // Assuming the delete button is a button element
     fireEvent.click(screen.getByText("Delete"));
 
-    // Verify that dispatch was called with the correct arguments
     expect(mockDispatch).toHaveBeenCalledWith({
       type: "DELETE",
       email: "jd@gmail.com",
